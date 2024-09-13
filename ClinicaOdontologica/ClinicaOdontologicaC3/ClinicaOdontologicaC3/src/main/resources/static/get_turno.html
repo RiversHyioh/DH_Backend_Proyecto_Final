@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Lista Odontologos</title>
+    <title>Lista turno</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/js/get_odontologo.js"></script>
-    <script type="text/javascript" src="/js/put_odontologo.js"></script>
-    <script type="text/javascript" src="/js/delete_odontologo.js"></script>
+    <script type="text/javascript" src="/js/get_turno.js"></script>
+    <script type="text/javascript" src="/js/put_turno.js"></script>
+    <script type="text/javascript" src="/js/delete_turno.js"></script>
 </head>
 <body>
 <div>
@@ -36,7 +36,8 @@
                             Odontologos
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="./post_odontolgo.html">Guardar</a></li>
+                            <li><a class="dropdown-item" href="post_odontolgo.html">Guardar</a></li>
+                            <li><a class="dropdown-item" href="./get_odontologo.html">Listar</a></li>
 
                         </ul>
                     </li>
@@ -46,69 +47,42 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="./post_turno.html">Guardar</a></li>
-                            <li><a class="dropdown-item" href="get_turno.html">Listar</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    </div>
+</div>
     <div class="container">
         <ul class="nav nav-pills mt-3">
             <li class="nav-item">
-                <a class="nav-link" href="/post_odontolgo.html">Agregar odontologo</a>
+                <a class="nav-link" href="/post_turno.html">Agregar turno</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/get_odontologo.html/">Actualizar</a>
+                <a class="nav-link" href="/get_turno.html/">Actualizar</a>
             </li>
         </ul>
-       <div id="div_odontologo_table mt-3">
-        <h1>Lista de Odontologos</h1>
+       <div id="div_turno_table mt-3">
+        <h1>Lista de turno</h1>
         <div class="row col-md-10 table-responsive">
-            <table id="odontologoTable" class="table table-striped">
+            <table id="turnoTable" class="table table-striped">
                 <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Matricula</th>
+                    <th>Nombre Paciente</th>
+                    <th>Apellido Paciente</th>
+                    <th>Nombre Odontologo</th>
+                    <th>Apellido Odontologo</th>
+                    <th>Fecha</th>
+                    <th>ELiminar</th>
                     <th></th>
-                  </tr>
+                </tr>
                 </thead>
-                <tbody id="odontologoTableBody">
+                <tbody id="turnoTableBody">
 
                 </tbody>
             </table>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-6" style="display: none;
-                                        background-color:#e6fffa; padding:10px; border-radius:3px"
-             id="div_odontologo_put">
-            <form id="put_odontologo">
-                <div class="form-group">
-                    <label >Id:</label>
-                    <input type="text" class="form-control" id="odontologo_id" readonly>
-                </div>
-                <div class="form-group">
-                    <label >Nombre:</label>
-                    <input type="text" class="form-control" placeholder="nombre" id="nombre">
-                </div>
-                <div class="form-group">
-                    <label >Apellido:</label>
-                    <input type="text" class="form-control" placeholder="apellido" id="apellido">
-                </div>
-                <div class="form-group">
-                    <label >Matricula:</label>
-                    <input type="text" class="form-control" placeholder="matricula" id="matricula">
-                </div>
-
-
-                <button type="submit" class="btn btn-primary">Modificar</button>
-            </form>
-            <div id="response" style="display:none; margin:10px">
-            </div>
         </div>
     </div>
     <hr>

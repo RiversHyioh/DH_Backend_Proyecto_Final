@@ -22,4 +22,10 @@ public class Odontologo {
     private String apellido;
     @Column
     private String matricula;
+
+    public Odontologo(String nombre, String apellido, String matricula) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.matricula = matricula;
+    }
 }

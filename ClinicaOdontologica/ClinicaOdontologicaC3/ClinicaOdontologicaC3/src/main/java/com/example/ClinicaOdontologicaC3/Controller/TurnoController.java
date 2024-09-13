@@ -4,6 +4,7 @@ import com.example.ClinicaOdontologicaC3.Dto.TurnoDTO;
 import com.example.ClinicaOdontologicaC3.Entity.Odontologo;
 import com.example.ClinicaOdontologicaC3.Entity.Paciente;
 import com.example.ClinicaOdontologicaC3.Entity.Turno;
+import com.example.ClinicaOdontologicaC3.Exception.ResourceNotFoundException;
 import com.example.ClinicaOdontologicaC3.Service.OdontologoService;
 import com.example.ClinicaOdontologicaC3.Service.PacienteService;
 import com.example.ClinicaOdontologicaC3.Service.TurnoService;
@@ -28,17 +29,17 @@ public class TurnoController {
 
 
     @PostMapping
-    public ResponseEntity<TurnoDTO> registrarTurno(@RequestBody Turno turno)throws BadRequestException {
-        Optional<Paciente> pacienteBuscado= pacienteService.buscarPorId(turno.getPaciente().getId());
-        Optional<Odontologo> odontologoBuscado= odontologoService.buscarPorId(turno.getOdontologo().getId());
-        if(pacienteBuscado.isPresent()&& odontologoBuscado.isPresent()){
+    public ResponseEntity<TurnoDTO> registrarTurno(@RequestBody Turno turno) throws BadRequestException {
+        Optional<Paciente> pacienteBuscado = pacienteService.buscarPorId(turno.getPaciente().getId());
+        Optional<Odontologo> odontologoBuscado = odontologoService.buscarPorId(turno.getOdontologo().getId());
+
+        if (pacienteBuscado.isPresent() && odontologoBuscado.isPresent()) {
             turno.setPaciente(pacienteBuscado.get());
             turno.setOdontologo(odontologoBuscado.get());
             return new ResponseEntity<>(turnoService.registrarTurno(turno), HttpStatus.OK);
+        } else {
+            throw new BadRequestException("El paciente o el odontólogo no existen");
         }
-        return new ResponseEntity<>(turnoService.registrarTurno(turno), HttpStatus.OK);
-
-
     }
 
     @PutMapping
@@ -53,13 +54,10 @@ public class TurnoController {
     }
 
     @GetMapping("/buscar/{id}")
-    public ResponseEntity<Optional<Turno>> buscarPorId(@PathVariable Long id) throws BadRequestException{
-        Optional<Turno> turnoABuscar = turnoService.buscarPorId(id);
-        if (turnoABuscar.isPresent()){
-            return new ResponseEntity<>(turnoABuscar, HttpStatus.OK);
-        }
-        //return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        throw new BadRequestException("Turno no encontrados por ID");
+    public ResponseEntity<Turno> buscarPorId(@PathVariable Long id) throws BadRequestException{
+        Turno turnoBuscado = turnoService.buscarPorId(id)
+                .orElseThrow(() -> new BadRequestException("turno no encontrado por id"));
+        return ResponseEntity.ok(turnoBuscado);
     }
 
     @GetMapping

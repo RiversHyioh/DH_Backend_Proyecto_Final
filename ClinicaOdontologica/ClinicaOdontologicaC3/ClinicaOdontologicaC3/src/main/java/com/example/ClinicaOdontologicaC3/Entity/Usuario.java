@@ -31,6 +31,7 @@ public class Usuario implements UserDetails {
     private String email;
     @Column(nullable = false)
     private String password;
+    @Getter
     @Enumerated(EnumType.STRING)
     private UsuarioRole usuarioRole;
 

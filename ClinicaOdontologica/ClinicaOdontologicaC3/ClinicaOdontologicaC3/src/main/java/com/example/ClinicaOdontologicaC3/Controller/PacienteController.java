@@ -34,15 +34,10 @@ public class PacienteController {
       }
   }
   @GetMapping("/buscar/{id}")
-    public ResponseEntity<Optional<Paciente>> buscarPorId(@PathVariable Long id) throws ResourceNotFoundException{
-
-        Optional<Paciente> pacienteBuscado= pacienteService.buscarPorId(id);
-        if(pacienteBuscado.isPresent()){
-            return ResponseEntity.ok(pacienteBuscado);
-        }else{
-            //return ResponseEntity.notFound().build();
-            throw new ResourceNotFoundException("paciente no encontrado por id");
-        }
+    public ResponseEntity<Paciente> buscarPorId(@PathVariable Long id) throws ResourceNotFoundException{
+      Paciente pacienteBuscado = pacienteService.buscarPorId(id)
+              .orElseThrow(() -> new ResourceNotFoundException("paciente no encontrado por id"));
+      return ResponseEntity.ok(pacienteBuscado);
   }
   @GetMapping("/buscar/email/{email}")
     public ResponseEntity<Optional<Paciente>> buscarPorEmail(@PathVariable String email) throws ResourceNotFoundException{

@@ -1,6 +1,7 @@
 package com.example.ClinicaOdontologicaC3.Controller;
 
 import com.example.ClinicaOdontologicaC3.Entity.Odontologo;
+import com.example.ClinicaOdontologicaC3.Entity.Paciente;
 import com.example.ClinicaOdontologicaC3.Exception.ResourceNotFoundException;
 import com.example.ClinicaOdontologicaC3.Repository.OdontologoRepository;
 import com.example.ClinicaOdontologicaC3.Service.OdontologoService;
@@ -40,15 +41,12 @@ public class OdontologoController {
     }
 
     @GetMapping("/buscar/{id}")
-    public ResponseEntity<Optional<Odontologo>> buscarPorId(@PathVariable Long id) throws ResourceNotFoundException{
-        Optional<Odontologo> odontologobuscar = odontologoService.buscarPorId(id);
-        if (odontologobuscar.isPresent()){
-            return new ResponseEntity<>(odontologobuscar, HttpStatus.OK);
-        }
-        //return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        throw new ResourceNotFoundException("Odontologo no encontrado por ese ID");
-    }
+    public ResponseEntity<Odontologo> buscarPorId(@PathVariable Long id) throws ResourceNotFoundException{
+        Odontologo odontologoBuscado = odontologoService.buscarPorId(id)
+                .orElseThrow(() -> new ResourceNotFoundException("odontologo no encontrado por id"));
+        return ResponseEntity.ok(odontologoBuscado);
 
+    }
 
     @GetMapping
     public ResponseEntity<List<Odontologo>> listarOdontologos(){
