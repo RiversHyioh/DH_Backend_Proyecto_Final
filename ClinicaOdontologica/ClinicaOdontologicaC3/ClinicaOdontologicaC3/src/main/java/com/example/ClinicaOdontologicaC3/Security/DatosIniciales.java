@@ -38,11 +38,11 @@ public class DatosIniciales implements ApplicationRunner {
         usuarioRepository.save(usuario1);
 
         Domicilio domicilio1 = new Domicilio( "Howard", 1, "Toronto", "Ontario");
-        Paciente paciente1 = new Paciente("Paola", "Lemon", "1323434",  LocalDate.parse("2009-01-01"), domicilio1,"ochoag@gmail.com");
+        Paciente paciente1 = new Paciente("Paola", "Lemone", "1323434",  LocalDate.parse("2009-01-01"), domicilio1,"ochoag@gmail.com");
         pacienteRepository.save(paciente1);
 
-        Domicilio domicilio2 = new Domicilio( "Londres", 1, "GRECO", "Lime");
-        Paciente paciente2 = new Paciente("Cristian", "Fresa", "13234",  LocalDate.parse("2009-01-02"), domicilio2,"112g@gmail.com");
+        Domicilio domicilio2 = new Domicilio( "Londres", 1, "Grice", "Lima");
+        Paciente paciente2 = new Paciente("Cristian", "Franco", "13234",  LocalDate.parse("2009-01-02"), domicilio2,"112g@gmail.com");
         pacienteRepository.save(paciente2);
 
         Odontologo odontologo1 = new Odontologo("Pedro","Casas","AD234");

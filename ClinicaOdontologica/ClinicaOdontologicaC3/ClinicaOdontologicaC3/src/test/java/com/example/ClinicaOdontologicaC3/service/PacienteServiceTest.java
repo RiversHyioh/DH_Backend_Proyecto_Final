@@ -27,7 +27,7 @@ public class PacienteServiceTest {
     public  void guardarPaciente(){
         Paciente paciente= new Paciente("Jorgito","Pereyra","11111", LocalDate.of(2024,9,9),new Domicilio("Calle siempre viva",123,"Sprinfield","USA"),"jorge.pereyra@digitalhouse.com");
         Paciente pacienteGuardao= pacienteService.registrarPaciente(paciente);
-        assertEquals(1L,pacienteGuardao.getId());
+        assertEquals(3L,pacienteGuardao.getId());
     }
     @Test
     @Order(2)
@@ -50,7 +50,7 @@ public class PacienteServiceTest {
     @Order(4)
     public void BuscarTodos(){
         List<Paciente> pacientes= pacienteService.listarTodos();
-        assertEquals(1,pacientes.size());
+        assertEquals(3,pacientes.size());
     }
     @Test
     @Order(5)

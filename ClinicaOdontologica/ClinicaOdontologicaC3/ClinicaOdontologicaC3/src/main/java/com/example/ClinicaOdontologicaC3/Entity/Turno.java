@@ -26,4 +26,10 @@ public class Turno {
     private Odontologo odontologo;
     @Column
     private LocalDate fecha;
+
+    public Turno(Paciente paciente, Odontologo odontologo, LocalDate fecha) {
+        this.paciente = paciente;
+        this.odontologo = odontologo;
+        this.fecha = fecha;
+    }
 }
